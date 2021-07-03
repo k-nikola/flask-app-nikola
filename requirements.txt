@@ -1,0 +1,8 @@
+
+flask
+mysqlclient
+flask-sqlalchemy
+flask_bcrypt
+flask_login
+flask-wtf
+email_validator

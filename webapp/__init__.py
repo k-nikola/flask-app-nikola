@@ -1,18 +1,17 @@
 import re
 
-#pip install flask
+
 from flask import Flask
 
-#pip install mysqlclient
-#pip install flask-sqlalchemy
+
 from flask_sqlalchemy import SQLAlchemy
 
 # from datetime import datetime
 
-#pip install flask_bcrypt, for cripting the password
+
 from flask_bcrypt import Bcrypt
 
-#pip install flask_login
+
 from flask_login import LoginManager
 
 

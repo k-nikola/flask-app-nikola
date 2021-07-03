@@ -1,10 +1,8 @@
-#pip install flask-wtf
 from enum import unique
 from flask.app import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.fields.simple import PasswordField, SubmitField
-# pip install email_validator
 from wtforms.validators import Email, Length, EqualTo, DataRequired, ValidationError
 from webapp.models import User
 class RegisterForm(FlaskForm):

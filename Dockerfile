@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python:latest
 
 
 RUN apt-get update -y && \

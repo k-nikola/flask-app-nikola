@@ -2,7 +2,7 @@ from abc import abstractmethod
 from werkzeug import datastructures
 from webapp import app
 from flask import render_template, request, redirect, url_for, flash
-from webapp.forms import LoginForm, RegisterForm
+from webapp.forms import CosmonautForm, LoginForm, RegisterForm
 from webapp.models import User
 from webapp import db
 from flask_login import login_user, logout_user
@@ -60,3 +60,12 @@ def logout():
     logout_user()
     flash("Successfully logged out.", category="info")
     return redirect(url_for("index"))
+
+@app.route("/book", methods=["POST","GET"])
+def book():
+    form = CosmonautForm()
+    if form.validate_on_submit():
+        flash("Success! Your form has been submitted. Bon voyage!")
+    else:
+        flash("Invalid input. Please check your form.", category="danger")
+    return render_template("book.html", form=form)

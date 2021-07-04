@@ -1,0 +1,28 @@
+{%extends "layout.html"%}
+{% block title %}
+    Book
+{% endblock %}
+{% block content %}
+    <body class="text-center">
+        <div class="container">
+            <h1>Hi, would you like to book your interstellar vacation?Fill the form below:</h1>
+            <br>
+            <form method="POST" class="form-check" style="color:#ffffff">   
+                {{ form.hidden_tag() }}
+                {{ form.age.label() }}
+                {{ form.age(class="form-control", placeholder="Please, tell us how old are you:") }}
+                {{ form.location.label() }}
+                {{ form.location(class="form-control", placeholder="Please, tell us where would you like to go?") }}
+                {{ form.departure_date.label() }}
+                {{ form.departure_date(class="form-control") }}
+                {{ form.return_date.label() }}
+                {{ form.return_date(class="form-control") }}
+                {{ form.blackhole_visit.label() }}
+                {{ form.blackhole_visit(class="form-control") }}
+                <br>
+                    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+                <br>
+            </form>
+        </div>
+    </body>
+{% endblock %}

@@ -2,8 +2,10 @@ from enum import unique
 from flask.app import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField
+from wtforms.fields.core import BooleanField, DateField, DateTimeField, IntegerField, SelectField
 from wtforms.fields.simple import PasswordField, SubmitField
 from wtforms.validators import Email, Length, EqualTo, DataRequired, ValidationError
+from wtforms.widgets.core import CheckboxInput
 from webapp.models import User
 class RegisterForm(FlaskForm):
     #Query the DB for existing username or email address.
@@ -28,4 +30,14 @@ class LoginForm(FlaskForm):
     username = StringField(label='Username:',validators=[DataRequired()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
     submit = SubmitField(label='Login')
+
+
+class CosmonautForm(FlaskForm):
+    age = IntegerField(label="Age",validators=[DataRequired()])
+    location = SelectField(label="Please tell us where would you like to go?:",validators=[DataRequired()], choices=["Proxima Centauri System","TRAPPIST-1 System","Kepler-1649 System","Teegarden's Star System"])
+    departure_date = DateTimeField(label="When would you like to depart?",validators=[DataRequired()])
+    return_date = DateTimeField(label="When would you like to return?",validators=[DataRequired()])
+    blackhole_visit = SelectField(label="Would you like a tour to the nearest black hole aswell?",choices=["Yes","No"])
+    submit = SubmitField(label='Login')
+
     

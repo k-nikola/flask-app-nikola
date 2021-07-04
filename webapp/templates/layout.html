@@ -13,10 +13,10 @@
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mx-2">
-      <a class="navbar-brand" href="/">k-nikola</a>
+    <nav class="navbar navbar-expand-md navbar-dark mx-3 bg-gradient">
+      <a class="navbar-brand" href="{{ url_for('index') }}">k-nikola</a>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto"> 
+            <ul class="navbar-nav mr-auto mx-5"> 
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
               </li>
@@ -74,6 +74,7 @@
       body{
           background-color: #212121;
           color: #ffffff;
+          background-image: url("https://i.imgur.com/G4kEp8x.jpeg");
       }
   </style>
 </html>

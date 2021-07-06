@@ -82,8 +82,8 @@ def book():
                         )
                     db.session.add(traveller_to_create)
                     db.session.commit()
-                    flash("Success! Your form has been submitted. Bon voyage!", category='success')
-                    return redirect(url_for('index'))
+                    flash("Success! Your vacation has been booked. Bon voyage!", category='success')
+                    return redirect(url_for('reservation'))
                 else:
                     flash("You cannot book an interstellar vacation with that age. Only those older than 18 and younger than 150 years can book a vacation like this.", category="danger")
             else:
@@ -105,3 +105,8 @@ def reservation():
         db.session.commit()
         return redirect(url_for('index'))
     return render_template("reservation.html", current_traveller=current_traveller)
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")

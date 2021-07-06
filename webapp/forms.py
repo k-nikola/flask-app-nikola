@@ -1,4 +1,3 @@
-from enum import unique
 from flask.app import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField
@@ -7,7 +6,6 @@ from wtforms.fields.simple import PasswordField, SubmitField
 from wtforms.validators import Email, Length, EqualTo, DataRequired, ValidationError
 from webapp.models import User
 from wtforms.fields.html5 import DateField
-from datetime import date
 class RegisterForm(FlaskForm):
     #Query the DB for existing username or email address.
     

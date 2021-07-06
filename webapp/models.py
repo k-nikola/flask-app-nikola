@@ -27,6 +27,15 @@ class User(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         #bcrypt.check_password_has returns true or false!
         return bcrypt.check_password_hash(self.password_crypted, attempted_password)
-   
+    
+    interstellar_travellers = db.relationship('InterstellarTraveller', backref='it_id', lazy=True)
 
-        
+
+class InterstellarTraveller(db.Model):
+    id = db.Column(db.Integer(), db.ForeignKey('user.id'), primary_key=True)
+    age = db.Column(db.Integer())
+    previous_experience = db.Column(db.String(length=3))
+    destination = db.Column(db.String(length=30))
+    departure_date = db.Column(db.Date())
+    return_date = db.Column(db.Date())
+    blackhole_tour = db.Column(db.String(length=3))

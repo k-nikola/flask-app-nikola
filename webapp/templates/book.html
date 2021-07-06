@@ -5,6 +5,7 @@
 {% block content %}
     <body class="text-center">
         <div class="container bg-gradient">
+            {% if current_traveller.destination == null %}
             <h1>Hi, would you like to book your interstellar vacation? Fill the form below:
             </h1>
             <br>
@@ -32,6 +33,13 @@
                     {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
                 <br>
             </form>
+            {% else %}
+            <h2>Hello {{ current_user.name }}, it appears that you already have a reservation.
+            </h2>
+            <h3>You can click the button below to review your reservation.</h3>
+            <br>
+            <a class="btn align-content-bottom btn-lg btn-primary" href="{{ url_for('reservation') }}">Click here to review your reservation.</a>
+            {% endif %}
         </div>
     </body>
 {% endblock %}

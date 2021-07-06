@@ -65,6 +65,7 @@ def logout():
 @login_required
 def book():
     form = CosmonautForm()
+    current_traveller = InterstellarTraveller.query.filter_by(id=current_user.id).first()
     if form.validate_on_submit():
         attempted_traveller = InterstellarTraveller.query.filter_by(id=current_user.id).first()
         if not attempted_traveller:
@@ -92,7 +93,7 @@ def book():
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(f'There was an error with your booking: {err_msg}', category="danger")
-    return render_template("book.html", form=form)
+    return render_template("book.html", form=form, current_traveller=current_traveller)
 
 @app.route("/reservation", methods=["POST","GET"])
 @login_required

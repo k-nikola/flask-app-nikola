@@ -5,3 +5,4 @@ flask_bcrypt
 flask_login
 flask-wtf
 email_validator
+mysql-connector-python

@@ -34,7 +34,7 @@ class LoginForm(FlaskForm):
 class CosmonautForm(FlaskForm):
     age = IntegerField(label="Age",validators=[DataRequired()])
     previous_experience = SelectField(label="Do you have previous interstellar travel experience?",choices=["Yes","No"],validators=[DataRequired()])
-    destination = SelectField(label="Please tell us where would you like to go?:",validators=[DataRequired()], choices=["Proxima Centauri System","TRAPPIST-1 System","Kepler-1649 System","Teegarden's Star System"])
+    destination = SelectField(label="Please tell us where would you like to go?:",validators=[DataRequired()], choices=["Proxima Centauri System","TRAPPIST-1 System","Kepler-1649 System","Teegarden's Star System","Kepler-452 System"])
     departure_date = DateField(label="When would you like to depart?")
     return_date = DateField(label="When would you like to return?")
     blackhole_visit = SelectField(label="Would you like a tour to the nearest black hole aswell?",choices=["Yes","No"])

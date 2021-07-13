@@ -1,0 +1,20 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-nginx-ingress
+  namespace: flaskapp-nikola
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: k-nikola.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: flask-service
+              port:
+                number: 5000
+          path: /
+          pathType: Prefix

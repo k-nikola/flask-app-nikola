@@ -1,5 +1,5 @@
 flask
-mysql-client
+mysqlclient
 flask-sqlalchemy
 flask_bcrypt
 flask_login

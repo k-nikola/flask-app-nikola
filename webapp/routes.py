@@ -12,10 +12,6 @@ from datetime import date
 def index():
     return render_template("index.html")
 
-@app.route("/success")
-def success():
-    return render_template("success.html")
-
 @app.route("/register", methods=["POST","GET"])
 def register():
     form = RegisterForm()

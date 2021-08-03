@@ -5,6 +5,7 @@ from flask_login import LoginManager
 import os
 
 app = Flask(__name__)
+#Database URI and secret key are being extracted from the os env variables
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('db_uri')
 app.config["SECRET_KEY"] = os.getenv('secret_key')
 db = SQLAlchemy(app)

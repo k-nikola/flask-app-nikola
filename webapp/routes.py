@@ -64,22 +64,27 @@ def book():
     current_traveller = InterstellarTraveller.query.filter_by(id=current_user.id).first()
     if form.validate_on_submit():
         attempted_traveller = InterstellarTraveller.query.filter_by(id=current_user.id).first()
+        booked_slots = InterstellarTraveller.query.filter_by(departure_date=form.departure_date.data, destination=form.destination.data).count()
+        max_slots = 6
         if not attempted_traveller:
             if form.departure_date.data<form.return_date.data and form.departure_date.data>=date.today():
                 if 18<=form.age.data<150:
-                    traveller_to_create=InterstellarTraveller(
-                            id = current_user.id,
-                            age = form.age.data,
-                            previous_experience = form.previous_experience.data,
-                            destination = form.destination.data,
-                            departure_date = form.departure_date.data,
-                            return_date = form.return_date.data,
-                            blackhole_tour = form.blackhole_visit.data
-                        )
-                    db.session.add(traveller_to_create)
-                    db.session.commit()
-                    flash("Success! Your vacation has been booked. Bon voyage!", category='success')
-                    return redirect(url_for('reservation'))
+                    if max_slots-booked_slots > 0:
+                        traveller_to_create=InterstellarTraveller(
+                                id = current_user.id,
+                                age = form.age.data,
+                                previous_experience = form.previous_experience.data,
+                                destination = form.destination.data,
+                                departure_date = form.departure_date.data,
+                                return_date = form.return_date.data,
+                                blackhole_tour = form.blackhole_visit.data
+                            )
+                        db.session.add(traveller_to_create)
+                        db.session.commit()
+                        flash("Success! Your vacation has been booked. Bon voyage!", category='success')
+                        return redirect(url_for('reservation'))
+                    else:
+                        flash("We are sorry, it appears there are no available slots for this date. Please pick another departure date.", category="danger")
                 else:
                     flash("You cannot book an interstellar vacation with that age. Only those older than 18 and younger than 150 years can book a vacation like this.", category="danger")
             else:

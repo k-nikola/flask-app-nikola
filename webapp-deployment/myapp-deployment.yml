@@ -7,7 +7,7 @@ metadata:
   labels:
     app: flaskapp
 spec:
-  replicas: 2
+  #replicas: 2
   selector:
     matchLabels:
       app: flaskapp
@@ -19,6 +19,13 @@ spec:
       containers:
       - name: flask-container
         image: t0b9/flask-app-nikola:latest
+        resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu:  100m
+              memory: 256Mi
         env:
         - name: db_uri
           valueFrom:

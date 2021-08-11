@@ -1,0 +1,14 @@
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flaskapp-hpa
+  namespace: flaskapp-nikola
+  apiVersion: apps/v1
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: flaskapp-deployment
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70

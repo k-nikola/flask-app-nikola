@@ -10,5 +10,5 @@ spec:
     kind: Deployment
     name: flaskapp-deployment
   minReplicas: 2
-  maxReplicas: 6
-  targetCPUUtilizationPercentage: 70
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80

@@ -20,7 +20,7 @@ spec:
         image: t0b9/flask-app-nikola:latest
         resources:
             requests:
-              cpu: 10m
+              cpu: 50m
               memory: 128Mi
             limits:
               cpu:  100m

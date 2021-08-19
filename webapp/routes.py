@@ -1,10 +1,9 @@
 from webapp import app
-from flask import render_template, request, redirect, url_for, flash, Markup
+from flask import render_template, request, redirect, url_for, flash
 from webapp.forms import CosmonautForm, LoginForm, RegisterForm
 from webapp.models import InterstellarTraveller, User
 from webapp import db
 from flask_login import login_user, logout_user, current_user, login_required
-from datetime import date
 
 
 @app.route("/")
@@ -63,37 +62,22 @@ def book():
     form = CosmonautForm()
     current_traveller = InterstellarTraveller.query.filter_by(id=current_user.id).first()
     if form.validate_on_submit():
-        attempted_traveller = InterstellarTraveller.query.filter_by(id=current_user.id).first()
-        booked_slots = InterstellarTraveller.query.filter_by(departure_date=form.departure_date.data, destination=form.destination.data).count()
-        max_slots = 6
-        if not attempted_traveller:
-            if form.departure_date.data<form.return_date.data and form.departure_date.data>=date.today():
-                if 18<=form.age.data<150:
-                    if max_slots-booked_slots > 0:
-                        traveller_to_create=InterstellarTraveller(
-                                id = current_user.id,
-                                age = form.age.data,
-                                previous_experience = form.previous_experience.data,
-                                destination = form.destination.data,
-                                departure_date = form.departure_date.data,
-                                return_date = form.return_date.data,
-                                blackhole_tour = form.blackhole_visit.data
-                            )
-                        db.session.add(traveller_to_create)
-                        db.session.commit()
-                        flash("Success! Your vacation has been booked. Bon voyage!", category='success')
-                        return redirect(url_for('reservation'))
-                    else:
-                        flash("We are sorry, it appears there are no available slots for this date. Please pick another departure date.", category="danger")
-                else:
-                    flash("You cannot book an interstellar vacation with that age. Only those older than 18 and younger than 150 years can book a vacation like this.", category="danger")
-            else:
-                flash("Travelling through time yet isn't possible. Pick a departure date that is not in the past and that is before the return date.", category="danger")
-        else:
-            flash(Markup("Already registered for an interstellar vacation. At this moment you cannot book more than one vacation.Click <a href='/reservation'>here</a> to review your reservation."),category="danger")
+            traveller_to_create=InterstellarTraveller(
+                    id = current_user.id,
+                    age = form.age.data,
+                    previous_experience = form.previous_experience.data,
+                    destination = form.destination.data,
+                    departure_date = form.departure_date.data,
+                    return_date = form.return_date.data,
+                    blackhole_tour = form.blackhole_visit.data
+                )
+            db.session.add(traveller_to_create)
+            db.session.commit()
+            flash("Success! Your vacation has been booked. Bon voyage!", category='success')
+            return redirect(url_for('reservation'))
     if form.errors != {}:
         for err_msg in form.errors.values():
-            flash(f'There was an error with your booking: {err_msg}', category="danger")
+                flash(f'There was an error with your booking: {err_msg[0]}', category="danger")
     return render_template("book.html", form=form, current_traveller=current_traveller)
 
 @app.route("/reservation", methods=["POST","GET"])

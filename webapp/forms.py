@@ -26,7 +26,7 @@ class RegisterForm(FlaskForm):
         ).first()
         if email_address:
             raise ValidationError(
-                "Username already exists. Please try a different username"
+                "Email already in use. Please use a different email adress."
             )
 
     username = StringField(

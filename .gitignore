@@ -3,3 +3,4 @@
 /webapp/__pycache__/
 /webapp/*.py[cod]
 /webapp/*$py.class
+/tests/__pycache__/

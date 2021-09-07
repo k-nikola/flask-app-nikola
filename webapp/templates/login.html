@@ -1,26 +1,28 @@
 {%extends "layout.html"%}
 {% block title %}
-    Login Page
+Login Page
 {% endblock %}
 {% block content %}
-    <body class="text-center">
-        <div class="container">
-            <h1>Login</h1>
+
+<body class="text-center">
+    <div class="container">
+        <h1>Login</h1>
+        <br>
+        <form method="POST" class="form-login" style="color:#ffffff">
+            {{ form.hidden_tag() }}
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="Your Username") }}
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Your Password") }}
             <br>
-            <form method="POST" class="form-login" style="color:#ffffff">   
-                {{ form.hidden_tag() }}
-                {{ form.username.label() }}
-                {{ form.username(class="form-control", placeholder="Your Username") }}
-                {{ form.password.label() }}
-                {{ form.password(class="form-control", placeholder="Your Password") }}
-                <br>
-                    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
-                <br>
-                    <div class="mb-3 mt-5">
-                        <h5>Not registered?</h5>
-                        <a class="btn btn-sm btn-secondary" href="{{ url_for('register') }}">Click here to register.</a>
-                    </div>
-            </form>
-        </div>
-    </body>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            <br>
+            <div class="mb-3 mt-5">
+                <h5>Not registered?</h5>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('register') }}" name="register">Click here to
+                    register.</a>
+            </div>
+        </form>
+    </div>
+</body>
 {% endblock %}

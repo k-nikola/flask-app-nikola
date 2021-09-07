@@ -1,43 +1,45 @@
 {%extends "layout.html"%}
 {% block title %}
-    Reservation
+Reservation
 {% endblock %}
 {% block content %}
+
 <body class="text-center">
     <div class="container bg-gradient">
         {% if current_traveller.destination != null %}
         <h2>Hello {{ current_user.name }}, here are the details of your reservation:
         </h2>
         <p>
-            <h3 class="float-xxl-center">Destination:</h3>
-            <h4>{{ current_traveller.destination }}</h4>
+        <h3 class="float-xxl-center">Destination:</h3>
+        <h4>{{ current_traveller.destination }}</h4>
         </p>
         <p>
-            <h3 class="float-xxl-center">Departure date:</h3>
-            <h4>{{ current_traveller.departure_date }}</h4>
+        <h3 class="float-xxl-center">Departure date:</h3>
+        <h4>{{ current_traveller.departure_date }}</h4>
         </p>
         <p>
-            <h3 class="float-xxl-center">Return date:</h3>
-            <h4>{{ current_traveller.return_date }}</h4>
+        <h3 class="float-xxl-center">Return date:</h3>
+        <h4>{{ current_traveller.return_date }}</h4>
         </p>
         <p>
-            <h3 class="float-xxl-center">Black hole tour:</h3>
-            <h4>{{ current_traveller.blackhole_tour }}</h4>
+        <h3 class="float-xxl-center">Black hole tour:</h3>
+        <h4>{{ current_traveller.blackhole_tour }}</h4>
         </p>
         <p class="align-bottom">
-            <div class="mb-3 mt-5">
-                <h5>Do you want to cancel your reservation? You can do it for free by clicking the button below.</h5>
-                <form method="post">
-                    <input type="Submit" value="Click here to cancel your reservation.">
-                </form>
-            </div>
+        <div class="mb-3 mt-5">
+            <h5>Do you want to cancel your reservation? You can do it for free by clicking the button below.</h5>
+            <form method="post">
+                <input type="Submit" value="Click here to cancel your reservation." name="cancel">
+            </form>
+        </div>
         </p>
         {% else %}
         <h2>Hello {{ current_user.name }}, it appears that you haven't made a reservation yet.
         </h2>
         <h3>If you would like to make one, please click the button below.</h3>
         <br>
-        <a class="btn align-content-bottom btn-lg btn-primary" href="{{ url_for('book') }}">Click here to book your interstellar vacation.</a>
+        <a class="btn align-content-bottom btn-lg btn-primary" href="{{ url_for('book') }}" name="book">Click here to
+            book your interstellar vacation.</a>
         {% endif %}
     </div>
 </body>

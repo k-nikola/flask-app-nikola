@@ -5,3 +5,4 @@
 /webapp/*$py.class
 /tests/__pycache__/
 /tests/testcases/__pycache__/
+__pycache__/

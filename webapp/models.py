@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     name = db.Column(db.String(length=30), nullable=False)
     # surname = db.Column(db.String(length=40), nullable=False)
-    email_address = db.Column(db.String(length=60), nullable=False)
+    email_address = db.Column(db.String(length=60), nullable=False, unique=True)
     password_crypted = db.Column(db.String(length=60), nullable=False)
 
     @property

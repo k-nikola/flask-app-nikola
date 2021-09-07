@@ -36,7 +36,7 @@ def register():
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
-                f"There was an error with creating an user: {err_msg}",
+                f"There was an error with creating an user: {err_msg[0]}",
                 category="danger",
             )
     return render_template("register.html", form=form)

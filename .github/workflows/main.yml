@@ -23,21 +23,19 @@ jobs:
           db_uri: ${{ secrets.DB_URI }}
           secret_key: ${{ secrets.SECRET_KEY }}
           driver_location: $CHROMEWEBDRIVER
-      - name: Set up app url for selenium
-        run: |
-          app_url=$(
-          ifconfig eth0 |
-          perl -ne 'print $1 if /inet\s.*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b/'
-          )':5000'
+          app_url: ${{ secrets.APP_URL }}
       - name: Setup selenium
         run: |
           sudo pip3 install selenium
       - name: Setup app
         run: |
           sudo pip3 install -r requirements.txt
+      - name: Export env var
+        run: |
+          export db_uri secret_key app_url driver_location
       - name: Start the app
         run: |
-          sudo python3 run.py
+          sudo python3 run.py &
       - name: Run the tests
         run: |
           sudo python3 test.py

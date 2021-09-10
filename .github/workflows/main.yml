@@ -22,7 +22,7 @@ jobs:
         env:
           db_uri: ${{ secrets.DB_URI }}
           secret_key: ${{ secrets.SECRET_KEY }}
-          driver_location: ''
+          driver_location: ${{ secrets.DRIVER_LOCATION }}
           app_url: ${{ secrets.APP_URL }}
       - name: Setup selenium
         run: |

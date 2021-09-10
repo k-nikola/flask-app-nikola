@@ -25,7 +25,7 @@ jobs:
           driver_location: $CHROMEWEBDRIVER
       - name: Set up app url for selenium
         run: |
-          app_url=$( 
+          app_url=$(
           ifconfig eth0 |
           perl -ne 'print $1 if /inet\s.*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b/'
           )':5000'
@@ -43,6 +43,7 @@ jobs:
           sudo python3 test.py
 
   build:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -27,6 +27,13 @@ jobs:
       - name: Setup selenium
         run: |
           sudo pip3 install selenium
+      - name: Setup chrome
+        run: |
+          sudo apt-get install google-chrome-stable 
+          sudo apt-get install -y unzip   
+          wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip 
+          unzip chromedriver_linux64.zip 
+          sudo mv chromedriver /usr/bin/chromedriver
       - name: Setup app
         run: |
           sudo pip3 install -r requirements.txt

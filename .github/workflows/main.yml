@@ -1,10 +1,19 @@
 name: CI/CD
 
+# on:
+#  push:
+#    branches: [main]
+#    paths:
+#      - webapp/**
 on:
-  push:
-    branches: [main]
-    paths:
-      - webapp/**
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+    tags:
+      description: "Test scenario tags"
 
 jobs:
   test:
@@ -34,17 +43,10 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip 
           unzip chromedriver_linux64.zip 
           sudo mv chromedriver /usr/bin/chromedriver
-      - name: Setup app
-        run: |
-          sudo pip3 install -r requirements.txt
-      - name: Export env var
+      - name: Start the tests
         run: |
           export db_uri secret_key app_url driver_location
-      - name: Start the app
-        run: |
           sudo python3 run.py &
-      - name: Run the tests
-        run: |
           sudo python3 test.py
 
   build:

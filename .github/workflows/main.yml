@@ -44,7 +44,10 @@ jobs:
           secret_key: ${{ secrets.SECRET_KEY }}
         run: |
           export db_uri secret_key
-          python3 run.py
+          docker build . -t test-flaskapp
+          docker run -d -p 5000:5000 \
+          -e db_uri=$db_uri -e secret_key=$secret_key \
+          test-flaskapp
       - name: Run the tests
         env:
           driver_location: ${{ secrets.DRIVER_LOCATION }}

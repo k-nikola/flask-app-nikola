@@ -4,5 +4,6 @@ flask-sqlalchemy
 flask_bcrypt
 flask_login
 flask-wtf
+wtforms
 email_validator
 mysql-connector-python

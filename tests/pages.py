@@ -112,13 +112,14 @@ class BookPage(BasePage):
         book_button = self.driver.find_element(*BookPageLocators.SUBMIT)
         book_button.click()
 
-    def clear_form(self):
+    def clear_book_form(self):
         """
+        No longer clears date fields in the form. Clears only text fields.
         Clears the text and date fields in the form.
         """
         self.driver.find_element(*BookPageLocators.AGE).clear()
-        self.driver.find_element(*BookPageLocators.DEPARTURE_DATE).clear()
-        self.driver.find_element(*BookPageLocators.RETURN_DATE).clear()
+        # self.driver.find_element(*BookPageLocators.DEPARTURE_DATE).clear()
+        # self.driver.find_element(*BookPageLocators.RETURN_DATE).clear()
 
 
 class LoginPage(BasePage):

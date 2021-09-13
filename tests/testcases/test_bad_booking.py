@@ -44,7 +44,7 @@ class BadBookingTestCase(unittest.TestCase):
             in self.driver.find_element_by_xpath("/html/body/div[1]").text
             or self.driver.find_element_by_xpath("/html/body/div[2]").text
         )
-        book_page.clear_form()
+        book_page.clear_book_form()
         book_page.fill_book_form(
             departure_date=(date.today() + timedelta(days=-7)).strftime("%m%d%Y"),
         )

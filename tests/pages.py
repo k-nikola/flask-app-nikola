@@ -79,8 +79,8 @@ class BookPage(BasePage):
         age: str = "18",
         prev_experience: str = "No",
         destination: str = "TRAPPIST-1 System",
-        departure_date: str = date.today().strftime("%d%b\t%Y"),
-        return_date: str = (date.today() + timedelta(days=7)).strftime("%d%b\t%Y"),
+        departure_date: str = date.today().strftime("%m%d%Y"),
+        return_date: str = (date.today() + timedelta(days=7)).strftime("%m%d%Y"),
         blackhole_visit: str = "No",
     ):
         """

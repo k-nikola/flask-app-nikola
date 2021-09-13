@@ -14,11 +14,15 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-          MYSQL_DB: ${{ secrets.MYSQL_DB }}
         ports:
           - 3306:3306
     steps:
       - uses: actions/checkout@v2
+      - name: Setup runner db
+        run: |
+          apt-get update
+          apt-get install -y mysql-client
+          mysql -uroot -h127.0.0.1 -p$MYSQL_ROOT_PASSWORD -e 'CREATE DATABASE IF NOT EXISTS flask_nikola;'
       - name: Setup selenium
         run: |
           sudo pip3 install selenium

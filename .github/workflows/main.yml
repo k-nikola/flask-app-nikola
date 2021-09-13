@@ -29,6 +29,9 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip 
           unzip chromedriver_linux64.zip 
           sudo mv chromedriver /usr/bin/chromedriver
+      - name: Install app requirements
+        run: |
+          sudo pip3 install -r requirements.txt
       - name: Start the app
         env:
           db_uri: ${{ secrets.DB_URI }}

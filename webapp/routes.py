@@ -47,7 +47,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         attempted_user = User.query.filter_by(username=form.username.data).first()
-        # checking if the user exists, and if the password is correct, through the check password function defined in user model.
+        # Checking if the user exists, and if the password is correct, through the check password function defined in user model.
         if attempted_user and attempted_user.check_password_correction(
             attempted_password=form.password.data
         ):
@@ -90,7 +90,10 @@ def book():
         )
         db.session.add(traveller_to_create)
         db.session.commit()
-        flash("Success! Your vacation has been booked. Bon voyage!", category="success")
+        flash(
+            f"Success! Your vacation has been booked. We wish you a safe trip to {traveller_to_create.destination}!",
+            category="success",
+        )
         return redirect(url_for("reservation"))
     if form.errors != {}:
         for err_msg in form.errors.values():

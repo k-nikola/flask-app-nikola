@@ -5,10 +5,14 @@ from datetime import timedelta, date
 
 
 class BadBookingTestCase(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.driver_location = driver_location
         self.app_url = app_url
         options = webdriver.ChromeOptions()
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--start-maximized")
+        options.add_argument("--disable-gpu")
+        options.headless = True
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
         self.driver = webdriver.Chrome(
             options=options, executable_path=self.driver_location
@@ -16,7 +20,6 @@ class BadBookingTestCase(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.implicitly_wait(4)
         self.driver.get(self.app_url)
-        return super().setUp()
 
     def test_bad_booking(self):
         self.driver.get(self.app_url + "login")
@@ -30,7 +33,7 @@ class BadBookingTestCase(unittest.TestCase):
         book_page = pages.BookPage(self.driver)
         book_page.fill_book_form(
             age="17",
-            return_date=(date.today() + timedelta(days=-7)).strftime("%d%b\t%Y"),
+            return_date=(date.today() + timedelta(days=-7)).strftime("%m%d%Y"),
         )
         book_page.click_book_button()
         assert (
@@ -43,7 +46,7 @@ class BadBookingTestCase(unittest.TestCase):
         )
         book_page.clear_form()
         book_page.fill_book_form(
-            departure_date=(date.today() + timedelta(days=-7)).strftime("%d%b\t%Y"),
+            departure_date=(date.today() + timedelta(days=-7)).strftime("%m%d%Y"),
         )
         book_page.click_book_button()
         assert (
@@ -51,10 +54,5 @@ class BadBookingTestCase(unittest.TestCase):
             in self.driver.find_element_by_xpath("/html/body/div[1]").text
         )
 
-    def tearDown(self) -> None:
+    def tearDown(self):
         self.driver.close()
-        return super().tearDown()
-
-
-if __name__ == "__main__":
-    unittest.main()

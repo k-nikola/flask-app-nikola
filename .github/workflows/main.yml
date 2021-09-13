@@ -19,11 +19,6 @@ jobs:
           - 3306:3306
     steps:
       - uses: actions/checkout@v2
-        env:
-          db_uri: ${{ secrets.DB_URI }}
-          secret_key: ${{ secrets.SECRET_KEY }}
-          driver_location: ${{ secrets.DRIVER_LOCATION }}
-          app_url: ${{ secrets.APP_URL }}
       - name: Setup selenium
         run: |
           sudo pip3 install selenium
@@ -34,12 +29,20 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip 
           unzip chromedriver_linux64.zip 
           sudo mv chromedriver /usr/bin/chromedriver
-      - name: Start the app and tests
+      - name: Start the app
+        env:
+          db_uri: ${{ secrets.DB_URI }}
+          secret_key: ${{ secrets.SECRET_KEY }}
         run: |
-          export db_uri secret_key app_url driver_location
-          sudo python3 run.py &
-          sudo python3 test.py
-
+          export db_uri secret_key
+          python3 run.py
+      - name: Run the tests
+        env:
+          driver_location: ${{ secrets.DRIVER_LOCATION }}
+          app_url: ${{ secrets.APP_URL }}
+        run: |
+          export app_url driver_location
+          python3 test.py
   build:
     needs: [test]
     runs-on: ubuntu-latest

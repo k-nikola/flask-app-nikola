@@ -18,13 +18,9 @@ class RegistrationTestCase(unittest.TestCase):
         )
         self.driver.maximize_window()
         self.driver.implicitly_wait(4)
-        self.driver.get(self.app_url)
+        self.driver.get(self.app_url + "register")
 
     def test_registration(self):
-        main_page = pages.MainPage(self.driver)
-        main_page.click_get_started_button()
-        login_page = pages.LoginPage(self.driver)
-        login_page.click_register_button()
         register_page = pages.RegisterPage(self.driver)
         register_page.fill_registration_form()
         register_page.click_create_account_button()

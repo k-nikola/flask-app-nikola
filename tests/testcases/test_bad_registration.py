@@ -44,7 +44,7 @@ class BadRegistrationTestCase(unittest.TestCase):
             in self.driver.find_element_by_xpath("/html/body/div[1]").text
         )
         register_page.clear_registration_form()
-        register_page.fill_registration_form(email="test1234@email.com")
+        register_page.fill_registration_form(email="test1234@mail.com")
         register_page.click_create_account_button()
         assert (
             "Email already in use."

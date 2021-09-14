@@ -29,7 +29,7 @@ class BadRegistrationTestCase(unittest.TestCase):
             in self.driver.find_element_by_xpath("/html/body/div[1]").text
         )
         register_page.clear_registration_form()
-        register_page.fill_registration_form(username="tobedudu")
+        register_page.fill_registration_form(username="test1234")
         register_page.click_create_account_button()
         assert (
             "Username already exists"

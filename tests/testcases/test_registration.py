@@ -28,10 +28,7 @@ class RegistrationTestCase(unittest.TestCase):
         register_page = pages.RegisterPage(self.driver)
         register_page.fill_registration_form()
         register_page.click_create_account_button()
-        assert (
-            "Successfully created an account"
-            in self.driver.find_element_by_xpath("/html/body/div[1]").text
-        )
+        assert "Success" in self.driver.find_element_by_xpath("/html/body/div[1]").text
 
     def tearDown(self):
         self.driver.close()

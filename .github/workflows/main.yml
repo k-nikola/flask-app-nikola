@@ -36,7 +36,7 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip 
           unzip chromedriver_linux64.zip 
           sudo mv chromedriver /usr/bin/chromedriver
-      - name: Start the app
+      - name: Setup and start the app
         env:
           db_uri: ${{ secrets.DB_URI }}
           secret_key: ${{ secrets.SECRET_KEY }}
@@ -44,7 +44,7 @@ jobs:
           export db_uri secret_key
           sudo apt-get install gunicorn
           nohup gunicorn -w 4 -b 0.0.0.0:5000 webapp:app > log.txt 2>&1 &
-          echo log.txt
+          cat log.txt
       - name: Run the tests
         env:
           driver_location: ${{ secrets.DRIVER_LOCATION }}

@@ -49,7 +49,6 @@ jobs:
         run: |
           export db_uri secret_key
           nohup gunicorn -b 0.0.0.0:5000 webapp:app > log.txt 2>&1 &
-          sleep 5
           sudo tail log.txt
       - name: Run the tests
         env:

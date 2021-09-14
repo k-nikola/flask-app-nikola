@@ -39,6 +39,9 @@ jobs:
       - name: Setup gunicorn
         run: |
           sudo apt-get install gunicorn
+      - name: Install requirements
+        run: |
+          sudo pip3 install -r requirements.txt
       - name: Setup and start the app
         env:
           db_uri: ${{ secrets.DB_URI }}

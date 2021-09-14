@@ -57,6 +57,7 @@ jobs:
         run: |
           export app_url driver_location
           python3 test.py
+          echo "Tests successful"
   build:
     needs: [test]
     runs-on: ubuntu-latest

@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y mysql-client
-          sudo mysql -uroot -h127.0.0.1 -p$MYSQL_ROOT_PASSWORD -e 'CREATE DATABASE IF NOT EXISTS flask_nikola;'
+          MYSQL_PWD=$MYSQL_ROOT_PASSWORD sudo mysql -uroot -h127.0.0.1 -e 'CREATE DATABASE IF NOT EXISTS flask_nikola;'
       - name: Setup selenium
         run: |
           sudo pip3 install selenium

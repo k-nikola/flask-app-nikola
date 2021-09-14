@@ -123,3 +123,21 @@ def reservation():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+# Create a user to test with
+@app.before_first_request
+def create_test_user():
+    db.create_all()
+    try:
+        db.session.add(
+            User(
+                username="test1234",
+                name="test1234",
+                email_address="test1234@mail.com",
+                password="asdasd",
+            )
+        )
+        db.session.commit()
+    except Exception:
+        db.session.rollback()

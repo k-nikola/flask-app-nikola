@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y mysql-client
-          MYSQL_PWD=$MYSQL_ROOT_PASSWORD sudo mysql -uroot -h127.0.0.1 -e 'CREATE DATABASE IF NOT EXISTS flask_nikola;'
+          sudo mysql -uroot -h127.0.0.1 -p$MYSQL_ROOT_PASSWORD -e 'CREATE DATABASE IF NOT EXISTS flask_nikola;'
       - name: Setup selenium
         run: |
           sudo pip3 install selenium
@@ -50,7 +50,7 @@ jobs:
           export db_uri secret_key
           nohup gunicorn -b 0.0.0.0:5000 webapp:app > log.txt 2>&1 &
           sleep 5
-          cat log.txt
+          sudo tail log.txt
       - name: Run the tests
         env:
           driver_location: ${{ secrets.DRIVER_LOCATION }}

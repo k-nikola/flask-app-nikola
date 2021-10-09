@@ -20,10 +20,10 @@ spec:
         image: t0b9/flask-app-nikola:latest
         resources:
             requests:
-              cpu: 50m
+              cpu: 100m
               memory: 128Mi
             limits:
-              cpu:  100m
+              cpu:  200m
               memory: 256Mi
         env:
         - name: db_uri

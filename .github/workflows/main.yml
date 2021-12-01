@@ -48,7 +48,8 @@ jobs:
           secret_key: ${{ secrets.SECRET_KEY }}
         run: |
           export db_uri secret_key
-          nohup gunicorn -b 0.0.0.0:5000 webapp:app >> log.txt 2>&1 &
+          nohup gunicorn -b 0.0.0.0:5000 webapp:app > log.txt 2>&1 &
+          sudo ls -lha | grep log
           sudo tail log.txt
       - name: Run the tests
         env:

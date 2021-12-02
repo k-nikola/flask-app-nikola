@@ -28,7 +28,8 @@ jobs:
           sudo mysql -uroot -h127.0.0.1 -p$MYSQL_ROOT_PASSWORD -e 'CREATE DATABASE IF NOT EXISTS flask_nikola;'
       - name: Setup selenium
         run: |
-          sudo pip3 install selenium==4.0.0
+          sudo pip3 uninstall selenium
+          sudo pip3 install selenium==3.141.0
       - name: Setup chrome
         run: |
           sudo apt-get install google-chrome-stable 

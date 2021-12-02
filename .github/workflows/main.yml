@@ -33,7 +33,7 @@ jobs:
         run: |
           sudo apt-get install google-chrome-stable 
           sudo apt-get install -y unzip   
-          wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip 
+          wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip 
           sudo mv chromedriver /usr/bin/chromedriver
       - name: Setup gunicorn
@@ -49,7 +49,7 @@ jobs:
         run: |
           export db_uri secret_key
           nohup gunicorn -b 0.0.0.0:5000 webapp:app > log.txt 2>&1 &
-          sudo ls -lha | grep log
+          sudo ls -lha
           sudo tail log.txt
       - name: Run the tests
         env:
@@ -58,7 +58,9 @@ jobs:
         run: |
           export app_url driver_location
           python3 test.py
-          echo "Tests successful"
+          echo "***************************************"
+          echo "Starting tests:"
+          echo "***************************************"
   build:
     needs: [test]
     runs-on: ubuntu-latest

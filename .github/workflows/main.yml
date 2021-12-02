@@ -32,7 +32,8 @@ jobs:
           sudo pip3 install selenium==3.141.0
       - name: Setup chrome
         run: |
-          sudo apt-get install google-chrome-stable=94.0.4606.71-1
+          wget http://dl.google.com/linux/deb/pool/main/g/google-chrome-unstable/google-chrome-unstable_94.0.4606.71-1_amd64.deb
+          apt-get install -f ./google-chrome-unstable_94.0.4606.71-1_amd64.deb
           sudo apt-get install -y unzip   
           wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip 

@@ -58,10 +58,11 @@ jobs:
           app_url: ${{ secrets.APP_URL }}
         run: |
           export app_url driver_location
-          python3 test.py
           echo "***************************************"
           echo "Starting tests:"
           echo "***************************************"
+          python3 test.py
+          
   build:
     needs: [test]
     runs-on: ubuntu-latest

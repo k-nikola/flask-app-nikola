@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-deployment
+  namespace: flaskapp-nikola
+  labels:
+    app: flaskapp
+spec:
+  selector:
+    matchLabels:
+      app: flaskapp
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+        - name: flask-container
+          image: t0b9/flask-app-nikola:latest
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          env:
+            - name: db_uri
+              valueFrom:
+                secretKeyRef:
+                  name: flask-mysql-secrets
+                  key: db_uri
+            - name: secret_key
+              valueFrom:
+                secretKeyRef:
+                  name: flask-mysql-secrets
+                  key: secret_key
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always

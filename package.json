@@ -1,0 +1,9 @@
+{
+    "name": "flask-app-nikola",
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/k-nikola/flask-app-nikola.git"
+    },
+    "homepage": "https://github.com/k-nikola/flask-app-nikola/blob/main/README.md"
+}

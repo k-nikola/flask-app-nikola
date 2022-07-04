@@ -39,11 +39,9 @@ jobs:
           sudo pip3 install selenium==3.141.0
       - name: Setup chrome
         run: |
-          sudo apt-get install google-chrome-stable
-          sudo apt-get install -y unzip   
-          wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip 
-          sudo mv chromedriver /usr/bin/chromedriver
+          sudo apt-get install -y google-chrome-stable unzip  
+          sudo wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+          sudo unzip chromedriver_linux64.zip -d /usr/bin/chromedriver
       - name: Install requirements
         run: |
           sudo pip3 install -r requirements.txt
@@ -54,8 +52,6 @@ jobs:
         run: |
           export db_uri secret_key
           nohup gunicorn -b 0.0.0.0:5000 webapp:app  2>&1 >> log.txt &
-          sudo ls -lha
-          sudo tail log.txt
       - name: Run the tests
         env:
           driver_location: ${{ secrets.DRIVER_LOCATION }}

@@ -39,9 +39,9 @@ jobs:
           sudo pip3 install selenium==3.141.0
       - name: Setup chrome
         run: |
-          sudo apt-get install -y google-chrome-stable unzip  
+          sudo apt-get install -y google-chrome-stable
           sudo wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-          sudo unzip chromedriver_linux64.zip -d /usr/bin/
+          sudo unzip chromedriver_linux64.zip -d /usr/bin
       - name: Install requirements
         run: |
           sudo pip3 install -r requirements.txt

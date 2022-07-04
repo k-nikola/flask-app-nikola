@@ -41,7 +41,7 @@ jobs:
         run: |
           sudo apt-get install -y google-chrome-stable
           sudo wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-          sudo unzip chromedriver_linux64.zip -d /usr/bin
+          sudo unzip chromedriver_linux64.zip && mv chromedriver /usr/bin/chromedriver
       - name: Install requirements
         run: |
           sudo pip3 install -r requirements.txt

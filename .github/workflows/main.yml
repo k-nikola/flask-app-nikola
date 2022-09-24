@@ -90,11 +90,11 @@ jobs:
     outputs:
       app_ver: ${{ steps.version-bump.outputs.newTag }}
 
-  deploy:
+  dispatch:
     needs: [build]
     runs-on: ubuntu-20.04
     steps:
-      - name: Deploy to Azure
+      - name: Start the main workflow of the infrastructure repo
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}

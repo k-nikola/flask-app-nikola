@@ -95,7 +95,7 @@ jobs:
       - name: Deploy to Azure
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ GH_ACCESS_TOKEN }}
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
           repository: k-nikola/flask-app-infra
           event-type: new-build
           client-payload: '{ "app_ver": "${{ steps.version-bump.outputs.newTag }}" }'

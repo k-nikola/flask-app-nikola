@@ -41,7 +41,7 @@ jobs:
         run: |
           sudo apt-get install -y google-chrome-stable
           sudo wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
-          sudo unzip chromedriver_linux64.zip && sudo mv chromedriver /usr/bin/chromedriver
+          sudo unzip chromedriver_linux64.zip && sudo mv chromedriver ${{ secrets.DRIVER_LOCATION }}
       - name: Install requirements
         run: |
           sudo pip3 install -r requirements.txt
@@ -50,7 +50,6 @@ jobs:
           db_uri: ${{ secrets.DB_URI }}
           secret_key: ${{ secrets.SECRET_KEY }}
         run: |
-          export db_uri secret_key
           nohup gunicorn -b 0.0.0.0:5000 webapp:app  2>&1 >> log.txt &
       - name: Run the tests
         env:

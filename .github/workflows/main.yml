@@ -74,6 +74,10 @@ jobs:
         uses: 'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording: 'add,added'
+          major-wording: 'major,Major'
+          patch-wording: 'patch,fix'
 
       - name: Docker login
         uses: docker/login-action@v1

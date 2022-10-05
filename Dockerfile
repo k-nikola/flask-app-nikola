@@ -1,11 +1,9 @@
 FROM python:3.10.1
 
-COPY . /flaskapp
+COPY . /usr/local/flaskapp
 
-WORKDIR /flaskapp
+WORKDIR /usr/local/flaskapp
 
 RUN pip3 install -r requirements.txt
 
-ENTRYPOINT [ "gunicorn" ]
-
-CMD ["-w", "4", "-b", "0.0.0.0:5000", "webapp:app", "2>&1", ">>", "log.txt", "&"]
+ENTRYPOINT [ "sh", "./entrypoint.sh" ]

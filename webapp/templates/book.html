@@ -1,48 +1,50 @@
-{%extends "layout.html"%}
-{% block title %}
-Book
-{% endblock %}
-{% block content %}
+{%extends "layout.html"%} {% block title %} Book {% endblock %} {% block content
+%}
 
 <body class="text-center">
-    <div class="container bg-gradient">
-        {% if current_traveller.destination == null %}
-        <h1>Hi, would you like to book your interstellar vacation? Fill the form below:
-        </h1>
-        <br>
-        <form method="POST" class="form-check" style="color:#ffffff">
-            {{ form.hidden_tag() }}
-            {{ form.age.label() }}
-            {{ form.age(class="form-control-lg form-control", placeholder="Please, tell us how old are you?") }}
-            <br>
-            {{ form.previous_experience.label() }}
-            {{ form.previous_experience(class="form-control-lg") }}
-            <br><br>
-            {{ form.destination.label() }}
-            {{ form.destination(class="form-control-lg form-control", placeholder="Please, tell us where would you like
-            to go?") }}
-            <br>
-            {{ form.departure_date.label() }}
-            {{ form.departure_date(class="datepicker form-control-lg") }}
-            {{ form.hidden_tag() }}
-            {{ form.return_date.label() }}
-            {{ form.return_date(class="datepicker form-control-lg") }}
-            {{ form.hidden_tag() }}
-            <br><br>
-            {{ form.blackhole_visit.label() }}
-            {{ form.blackhole_visit(class="form-control-lg") }}
-            <br><br>
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
-            <br>
-        </form>
-        {% else %}
-        <h2>Hello {{ current_user.name }}, it appears that you have already made a reservation.
-        </h2>
-        <h3>Click the button below to review your reservation.</h3>
-        <br>
-        <a class="btn align-content-bottom btn-lg btn-secondary" href="{{ url_for('reservation') }}">Click here to
-            review your reservation.</a>
-        {% endif %}
-    </div>
+  <div class="container bg-gradient">
+    {% if current_traveller.destination == null %}
+    <h1>
+      Hi, would you like to book your interstellar vacation? Fill the form
+      below:
+    </h1>
+    <br />
+    <form method="POST" class="form-check" style="color: #ffffff">
+      {{ form.hidden_tag() }} {{ form.age.label() }} {{
+      form.age(class="form-control-lg form-control", placeholder="Please, tell
+      us how old are you?") }}
+      <br />
+      {{ form.previous_experience.label() }} {{
+      form.previous_experience(class="form-control-lg") }}
+      <br /><br />
+      {{ form.destination.label() }} {{ form.destination(class="form-control-lg
+      form-control", placeholder="Please, tell us where would you like to go?")
+      }}
+      <br />
+      {{ form.departure_date.label() }} {{ form.departure_date(class="datepicker
+      form-control-lg") }} {{ form.hidden_tag() }} {{ form.return_date.label()
+      }} {{ form.return_date(class="datepicker form-control-lg") }} {{
+      form.hidden_tag() }}
+      <br /><br />
+      {{ form.blackhole_visit.label() }} {{
+      form.blackhole_visit(class="form-control-lg") }}
+      <br /><br />
+      {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+      <br />
+    </form>
+    {% else %}
+    <h2>
+      Hello {{ current_user.name }}, it appears that you have already made a
+      reservation.
+    </h2>
+    <h3>Click the button below to review your reservation.</h3>
+    <br />
+    <a
+      class="btn align-content-bottom btn-lg btn-secondary"
+      href="{{ url_for('reservation') }}"
+      >Click here to review your reservation.</a
+    >
+    {% endif %}
+  </div>
 </body>
 {% endblock %}

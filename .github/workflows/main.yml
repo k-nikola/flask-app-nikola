@@ -3,7 +3,7 @@ name: CI/CD
 on:
   pull_request:
     types: [closed]
-    branches: [main]
+    branches: [main, nikola/*]
     paths:
       - webapp/**
       - .github/**
@@ -71,7 +71,7 @@ jobs:
 
       - name: Automated version-bump
         id: version-bump
-        uses: "phips28/gh-action-bump-version@master"
+        uses: 'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

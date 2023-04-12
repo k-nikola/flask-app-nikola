@@ -1,5 +1,5 @@
 flask==2.0.2
-Werkzeug==2.2.3
+Werkzeug==2.0.0
 mysqlclient==2.0.3
 flask-sqlalchemy==2.5.1
 flask_bcrypt==0.7.1

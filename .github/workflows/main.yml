@@ -1,13 +1,6 @@
 name: CI/CD
 
 on:
-  pull_request:
-    types: [closed]
-    branches: [main]
-    paths:
-      - webapp/**
-      - .github/**
-      - requirements.txt
   push:
     branches: [main]
     paths:

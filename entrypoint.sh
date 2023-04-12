@@ -9,4 +9,4 @@ exec gunicorn webapp:app --name flask-app-nikola \
 --workers 3 \
 --log-level=info \
 --log-file=/var/log/flaskapp/error.log \
---access-logfile=/var/log/flaskapp/access.log \
+--access-logfile=/var/log/flaskapp/access.log
